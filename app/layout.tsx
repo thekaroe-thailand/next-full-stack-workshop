@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Sidebar from '@/components/Sidebar'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +25,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* fontawesome */}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajsx/libs/font-awesome/6.5.2/css/all.min.css" />
+
+        {/* google fonts prompt */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swal" rel="stylesheet" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="flex">
+          <Sidebar />
+          <main className="w-full p-5 bg-slate-300">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );
