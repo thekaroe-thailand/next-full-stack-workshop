@@ -13,14 +13,20 @@ export default function Sidebar() {
                 <ul className="sidebar-menu">
                     <li>
                         <Link href="/home/apartment" className="flex items-center gap-2">
-                            <i className="fa-solid fa-house"></i>
+                            <i className="fa-solid fa-house w-7"></i>
                             <span>ข้อมูลหอพัก</span>
                         </Link>
                     </li>
                     <li>
                         <Link href="/home/room-type" className="flex items-center gap-2">
-                            <i className="fa-solid fa-bed"></i>
+                            <i className="fa-solid fa-bed w-7"></i>
                             <span>ประเภทห้องพัก</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/home/room" className="flex items-center gap-2">
+                            <i className="fa-solid fa-box w-7"></i>
+                            <span>ห้องพัก</span>
                         </Link>
                     </li>
                 </ul>

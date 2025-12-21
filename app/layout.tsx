@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* fontawesome */}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajsx/libs/font-awesome/6.5.2/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
         {/* google fonts prompt */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,7 +39,7 @@ export default function RootLayout({
       >
         <div className="flex">
           <Sidebar />
-          <main className="w-full p-5 bg-slate-300">
+          <main className="w-full p-5 bg-slate-300 h-screen overflow-y-auto">
             {children}
           </main>
         </div>
