@@ -37,16 +37,55 @@ model RoomType {
 }
 
 model Room {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   name        String
   towerName   String
   totalLevel  Int
   totalRoom   Int
   roomTypeId  String
-  roomType    RoomType @relation(fields: [roomTypeId], references: [id])
+  roomType    RoomType  @relation(fields: [roomTypeId], references: [id])
   remark      String?
-  status      String   @default("active") // active, inactive
-  statusEmpty String   @default("empty") // empty, accupied
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  status      String    @default("active") // active, inactive
+  statusEmpty String    @default("empty") // empty, accupied
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  bookings    Booking[]
+}
+
+model Booking {
+  id              String           @id @default(cuid())
+  customerName    String
+  customerPhone   String
+  customerAddress String?
+  cardId          String?
+  gender          String           @default("male")
+  roomId          String
+  room            Room             @relation(fields: [roomId], references: [id])
+  remark          String?
+  status          String           @default("active") // active, inactive
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  stayAt          DateTime
+  stayTo          DateTime?
+  deposit         Int              @default(0)
+  electricityLogs ElectricityLog[]
+  waterLogs       WaterLog[]
+}
+
+model ElectricityLog {
+  id              String   @id @default(cuid())
+  bookingId       String
+  booking         Booking  @relation(fields: [bookingId], references: [id])
+  electricityUnit Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model WaterLog {
+  id        String   @id @default(cuid())
+  bookingId String
+  booking   Booking  @relation(fields: [bookingId], references: [id])
+  waterUnit Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

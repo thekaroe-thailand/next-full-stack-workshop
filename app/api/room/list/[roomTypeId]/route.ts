@@ -11,13 +11,32 @@ export async function GET(
         const { roomTypeId } = await params;
         const rooms = await prisma.room.findMany({
             orderBy: {
-                createdAt: 'desc'
+                name: 'asc'
             },
             include: {
-                roomType: true
+                roomType: true,
+                bookings: {
+                    include: {
+                        waterLogs: {
+                            orderBy: {
+                                createdAt: 'desc'
+                            },
+                            take: 1
+                        },
+                        electricityLogs: {
+                            orderBy: {
+                                createdAt: 'desc'
+                            },
+                            take: 1
+                        }
+                    },
+                    orderBy: {
+                        createdAt: 'desc'
+                    },
+                    take: 1
+                }
             },
             where: {
-                status: 'active',
                 roomTypeId: roomTypeId
             }
         })
