@@ -29,6 +29,19 @@ export default function Sidebar() {
                             <span>ห้องพัก</span>
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/home/money-added" className="flex items-center gap-2">
+                            <i className="fa-solid fa-database w-7"></i>
+                            <span>เงินเพิ่ม</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/home/water-and-electricity-price"
+                            className="flex items-center gap-2">
+                            <i className="fa-solid fa-wand-magic-sparkles w-7"></i>
+                            <span>ราคาค่าน้ำและค่าไฟ</span>
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </div>
