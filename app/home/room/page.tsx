@@ -245,7 +245,20 @@ export default function Room() {
                         ${room.status == 'active' ? 'bg-green-100' : 'bg-red-100'}
                         ${room.statusEmpty == 'no' ? 'bg-red-100' : 'bg-green-100'}
                         `}>
-                        <div className="text-xl font-semibold">{room.name}</div>
+                        <div className="text-xl font-semibold">
+                            {room.name}
+
+                            {room.statusEmpty === 'no' &&
+                                <Button className='px-4 py-2 rounded-full border border-gray-400 ms-4 mb-2'
+                                    variant='secondary'
+                                    onClick={() => {
+                                        window.open('/receive/' + room.id, '_blank');
+                                    }}>
+                                    <i className="fa fa-print mr-2"></i>
+                                    พิมพ์ใบแจ้งค่าเช่า
+                                </Button>
+                            }
+                        </div>
                         <div>{room.roomType.name}</div>
                         <div>
                             ค่าเช่า:
