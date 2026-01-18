@@ -24,6 +24,12 @@ export default function Sidebar() {
                         </Link>
                     </li>
                     <li>
+                        <Link href="/home/water-and-electricity-log" className="flex items-center gap-2">
+                            <i className="fa-solid fa-note-sticky w-7"></i>
+                            <span>บันทึกมิเตอร์น้ำ, ไฟฟ้า</span>
+                        </Link>
+                    </li>
+                    <li>
                         <Link href="/home/room" className="flex items-center gap-2">
                             <i className="fa-solid fa-box w-7"></i>
                             <span>ห้องพัก</span>
