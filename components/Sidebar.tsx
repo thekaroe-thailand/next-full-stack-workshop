@@ -48,6 +48,12 @@ export default function Sidebar() {
                             <span>ราคาค่าน้ำและค่าไฟ</span>
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/home/bills" className="flex items-center gap-2">
+                            <i className="fa-solid fa-file-invoice w-7"></i>
+                            <span>รายการบิล</span>
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </div>
