@@ -54,6 +54,18 @@ export default function Sidebar() {
                             <span>รายการบิล</span>
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/home/room-transfer" className="flex items-center gap-2">
+                            <i className="fa-solid fa-arrow-right-arrow-left w-7"></i>
+                            <span>รายการย้ายห้อง</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/home/move-outs" className="flex items-center gap-2">
+                            <i className="fa-solid fa-arrow-right-from-bracket w-7"></i>
+                            <span>รายการย้ายออก</span>
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </div>
