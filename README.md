@@ -41,4 +41,8 @@ to slide 273
 npx prisma db push
 npx prisma generate
 
+git status
+git add .
+git commit -m "deploy"
+git push
 
