@@ -12,6 +12,12 @@ export default function Sidebar() {
             <nav className="p-5">
                 <ul className="sidebar-menu">
                     <li>
+                        <Link href="/home/dashboard" className="flex items-center gap-2">
+                            <i className="fa-solid fa-chart-line w-7"></i>
+                            <span>Dashboard</span>
+                        </Link>
+                    </li>
+                    <li>
                         <Link href="/home/apartment" className="flex items-center gap-2">
                             <i className="fa-solid fa-house w-7"></i>
                             <span>ข้อมูลหอพัก</span>

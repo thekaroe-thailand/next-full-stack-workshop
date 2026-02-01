@@ -167,18 +167,18 @@ model RoomTransfer {
 }
 
 model MoveOut {
-  id              String    @id @default(cuid())
-  roomId          String
-  room            Room      @relation(fields: [roomId], references: [id])
-  bookingId       String
-  booking         Booking   @relation(fields: [bookingId], references: [id])
-  moveOutDate     DateTime  @default(now())
-  reason          String
-  despositReturn  Int       @default(0) // คืนเงินประกัน
-  outstandingFees Int       @default(0) // ค่าปรับเพิ่ม
-  status          String    @default("pending") // active, inactive
-  approveBy       String?
-  approveAt       DateTime?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id             String    @id @default(cuid())
+  roomId         String
+  room           Room      @relation(fields: [roomId], references: [id])
+  bookingId      String
+  booking        Booking   @relation(fields: [bookingId], references: [id])
+  moveOutDate    DateTime  @default(now())
+  reason         String
+  despositReturn Int       @default(0) // คืนเงินประกัน
+  refund         Int       @default(0) // ค่าปรับเพิ่ม
+  status         String    @default("pending") // active, inactive
+  approveBy      String?
+  approveAt      DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 }

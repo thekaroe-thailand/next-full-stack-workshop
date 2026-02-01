@@ -146,6 +146,29 @@ export default function RoomTransferPage() {
         }
     }
 
+    const handleDelete = async (id: string) => {
+        const result = await Swal.fire({
+            text: 'คุณต้องการยกเลิกรายการนี้ใช่หรือไม่',
+            icon: 'question',
+            title: 'ยกเลิกรายการ',
+            showCancelButton: true,
+            showConfirmButton: true
+        })
+
+        if (result.isConfirmed) {
+            try {
+                await axios.delete('/api/room-transfers/' + id);
+                fetchData();
+            } catch (err) {
+                Swal.fire({
+                    title: 'error',
+                    icon: 'error',
+                    text: (err as Error).message
+                })
+            }
+        }
+    }
+
     const occupiiedRooms = rooms.filter(r => r.statusEmpty === 'no');
     const emptyRooms = rooms.filter(r => r.statusEmpty !== 'no');
 
@@ -231,7 +254,9 @@ export default function RoomTransferPage() {
                                                         ยืนยัน
                                                     </Button>
                                                 )}
-                                                <Button className="text-red-600 bg-white border-red-600 border
+                                                <Button
+                                                    onClick={() => handleDelete(item.id)}
+                                                    className="text-red-600 bg-white border-red-600 border
                                                     hover:bg-red-600 hover:text-white
                                                 ">
                                                     ยกเลิก

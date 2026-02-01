@@ -1,4 +1,5 @@
 // PUT /api/room-transfers/[id]
+// DELETE /api/room-transfer/[id]
 
 import { NextResponse } from "next/server";
 import { z } from 'zod';
@@ -68,4 +69,78 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
             { status: 500 }
         )
     }
-} 
+}
+
+export async function DELETE(
+    req: Request,
+    { params }: {
+        params: Promise<{ id: string }>
+    }
+) {
+    try {
+        const { id } = await params;
+        const transfer = await prisma.roomTransfer.findUnique({
+            where: {
+                id: id
+            }
+        })
+
+        if (!transfer) {
+            return NextResponse.json(
+                { error: 'Room transfer not found' },
+                { status: 404 }
+            )
+        }
+
+        await prisma.$transaction(async (tx) => {
+            if (transfer.status === 'completed') {
+                await tx.room.update({
+                    where: {
+                        id: transfer.fromRoomId
+                    },
+                    data: {
+                        statusEmpty: 'no'
+                    }
+                });
+
+                await tx.room.update({
+                    where: {
+                        id: transfer.toRoomId
+                    },
+                    data: {
+                        statusEmpty: 'empty'
+                    }
+                });
+
+                await tx.booking.update({
+                    where: {
+                        id: transfer.bookingId
+                    },
+                    data: {
+                        roomId: transfer.fromRoomId
+                    }
+                });
+            }
+
+            await tx.roomTransfer.delete({
+                where: {
+                    id: id
+                }
+            });
+        });
+
+        return NextResponse.json({ success: true });
+    } catch (err) {
+        return NextResponse.json(
+            { error: (err as Error).message },
+            { status: 500 }
+        )
+    }
+}
+
+
+
+
+
+
+

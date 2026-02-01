@@ -10,7 +10,7 @@ export interface MoveOutInterface {
     moveOutDate: Date;
     reason?: string;
     despositReturn?: number;
-    outstandingFees?: number;
+    refun?: number;
     status: string;
     approveBy?: string;
     approveAt?: Date;
